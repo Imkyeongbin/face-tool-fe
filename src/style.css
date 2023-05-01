@@ -64,8 +64,41 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.flex{
+  display: flex;
+}
+
 .card {
   padding: 2em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.spinner {
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-top-color: #42b883;
+  animation: spin 1s linear infinite;
+  position: absolute;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.card.loading {
+  background-color: rgba(128, 128, 128, 0.5);
+  color: rgba(0, 0, 0, 0.1);
 }
 
 #app {
@@ -73,6 +106,9 @@ button:focus-visible {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (prefers-color-scheme: light) {
