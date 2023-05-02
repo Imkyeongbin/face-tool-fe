@@ -49,6 +49,7 @@ const submitFiles = async () => {
 <template>
   
   <h1>{{ msg }}</h1>
+  <div v-if="isLoading">이미지 크기와 네트워크 환경에 따라 5~10초 정도 걸릴 수 있습니다.</div>
   <div class="card" :class="{ 'loading': isLoading }">
     <div v-if="isLoading" class="spinner"></div>
     <div v-for="(result, index) in result_list" :key="index">
