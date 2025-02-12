@@ -1,10 +1,11 @@
 <template>
   <div class="header">
-    <div class="vue-icons">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    <div class="logo-section">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+      <button class="menu-toggle" @click="toggleMenu">&#9776;</button>
     </div>
-    <nav>
+    <nav class="navigation" v-show="menuOpen">
       <ul class="nav-menu">
         <li>
           <router-link to="/verifier" active-class="active-menu" exact>동일인 판별기</router-link>
@@ -18,6 +19,22 @@
   <router-view></router-view>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      menuOpen: false
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    }
+  }
+}
+</script>
+
+
 <style scoped>
 .header {
   position: fixed;
@@ -26,60 +43,69 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #ffffff;
   padding: 20px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
 
-.logo {
-  height: 3em;
-  padding: 0.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px; /* Adjust based on your layout */
+  margin-bottom: 10px;
 }
 
-/* Navigation menu styles */
+.logo {
+  height: 40px;
+  transition: transform 300ms ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .nav-menu {
   display: flex;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-menu li {
-  margin-right: 20px;
-}
-
-.nav-menu li:last-child {
-  margin-right: 0;
+  margin: 0 15px;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: #646cff;
-  
-  transition: color 300ms;
+  font-size: 16px;
+  transition: color 300ms, transform 300ms;
 }
 
 .nav-menu a:hover {
   color: #42b883;
+  transform: translateY(-3px);
 }
 
-/* Active menu styles */
 .active-menu {
   color: #42b883;
-  font-weight: 800;
-  background-color: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 5px;
+  font-weight: bold;
+  background-color: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 </style>
